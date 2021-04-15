@@ -11,7 +11,7 @@ int main(void)
 	while(1)
 	{	
 		toggle();
-		delayms(500);
+		delayms(50);
 		
 		
 	}

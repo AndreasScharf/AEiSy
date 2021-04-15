@@ -21,54 +21,22 @@ Target DLL:      UL2CM3.DLL V1.163.9.0
 Dialog DLL:      TARMP1.DLL V1.26.0.0
  
 <h2>Project:</h2>
-C:\Users\Fred\OneDrive\Desktop\Basisprojekt\Basisprojekt\MC_robot.uvprojx
+C:\Users\Fred\Desktop\Basisprojekt richtig\MC_robot.uvproj
 Project File Date:  04/15/2021
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'Target 1'
 assembling delay.s...
-assembling startup_LPC177x_8x.s...
-compiling system_LPC177x_8x.c...
-system_LPC177x_8x.c(356): error:  #20: identifier "OSC_CLK" is undefined
-  uint32_t SystemCoreClock = __CORE_CLK;/*!< System Clock Frequency (Core Clock)*/
-system_LPC177x_8x.c(371): error:  #20: identifier "IRC_OSC" is undefined
-  		  SystemCoreClock = __CLK_DIV(IRC_OSC , (LPC_SC->CCLKSEL & 0x1F));
-system_LPC177x_8x.c(396): error:  #20: identifier "IRC_OSC" is undefined
-            SystemCoreClock = __CLK_DIV(IRC_OSC * ((LPC_SC->PLL0STAT & 0x1F) + 1) , (LPC_SC->CCLKSEL & 0x1F));
-system_LPC177x_8x.c(427): error:  #20: identifier "IRC_OSC" is undefined
-  			  USBClock = (IRC_OSC * ((LPC_SC->PLL0STAT & 0x1F) + 1) / (LPC_SC->USBCLKSEL & 0x1F));
-system_LPC177x_8x.c(438): error:  #20: identifier "IRC_OSC" is undefined
-  	  		USBClock = (IRC_OSC * ((LPC_SC->PLL0STAT & 0x1F) + 1));
-system_LPC177x_8x.c: 0 warnings, 5 errors
-compiling core_cm3.c...
 compiling LED_P1_10_toggle.c...
+assembling startup_LPC177x_8x.s...
+compiling core_cm3.c...
 compiling main.c...
-".\Objects\p1.axf" - 5 Error(s), 0 Warning(s).
-
-<h2>Software Packages used:</h2>
-
-Package Vendor: ARM
-                http://www.keil.com/pack/ARM.CMSIS.5.7.0.pack
-                ARM.CMSIS.5.7.0
-                CMSIS (Cortex Microcontroller Software Interface Standard)
-   * Component: CORE Version: 5.4.0
-
-Package Vendor: Keil
-                http://www.keil.com/pack/Keil.LPC1700_DFP.2.6.0.pack
-                Keil.LPC1700_DFP.2.6.0
-                NXP LPC1700 Series Device Support, Drivers and Examples for MCB1700 and LPC1788-32
-
-<h2>Collection of Component include folders:</h2>
-  .\RTE\_Target_1
-  C:\Users\Fred\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include
-  C:\Users\Fred\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.6.0\Device\Include
-
-<h2>Collection of Component Files used:</h2>
-
-   * Component: ARM::CMSIS:CORE:5.4.0
-Target not created.
-Build Time Elapsed:  00:00:02
+compiling system_LPC177x_8x.c...
+linking...
+Program Size: Code=672 RO-data=312 RW-data=4 ZI-data=1636  
+".\Objects\p1.axf" - 0 Error(s), 0 Warning(s).
+Build Time Elapsed:  00:00:03
 </pre>
 </body>
 </html>
