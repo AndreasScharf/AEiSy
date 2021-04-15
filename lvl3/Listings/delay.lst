@@ -1,0 +1,157 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         
+    2 00000000         ; ////////////////////////////////////
+    3 00000000         ; // SOURCE FILE   delay.s     //
+    4 00000000         ; ////////////////////////////////////
+    5 00000000         
+    6 00000000         ;/******************************************************
+                       ********************
+    7 00000000         ; *  Eingebettete Betriebssystem    (EBSy)              
+                                          *                                    
+                                                                               
+                             *
+    8 00000000         ; ******************************************************
+                       ********************
+    9 00000000         ; *  PROJECT       Project1                             
+                                          *
+   10 00000000         ; *  MODULE        delay.s                              
+                                          *
+   11 00000000         ; *  REVISION      1.0                                  
+                                          *
+   12 00000000         ; *  LAST AUTHOR                                        
+                                          *
+   13 00000000         ; *  LAST MODIFIED                                      
+                                          *
+   14 00000000         ; *  RESPONSIBLE   Peter Raab                           
+                                          *
+   15 00000000         ; ******************************************************
+                       ********************
+   16 00000000         ; *  PURPOSE:                                           
+                                          *
+   17 00000000         ; *   Delay of CPU execution; implements an exact time d
+                       eley of R0 * 1ms   *
+   18 00000000         ; *                                                     
+                                          *
+   19 00000000         ; ******************************************************
+                       ********************
+   20 00000000         ; *  REMARKS:                                           
+                                          *
+   21 00000000         ; *   <none>                                            
+                                          *
+   22 00000000         ; *                                                     
+                                          *
+   23 00000000         ; ******************************************************
+                       ********************
+   24 00000000         ; *  CHANGE HISTORY:                                    
+                                          *
+   25 00000000         ; *  Revision   Date          Author      Description   
+                                          *
+   26 00000000         ; *     1.0      06.09.2019    P. Raab     creation     
+                                          *
+   27 00000000         ; *                                                     
+                                          *
+   28 00000000         ; ******************************************************
+                       *******************/
+   29 00000000         
+   30 00000000         
+   31 00000000                 AREA             DELAY, CODE, READONLY ; .sectio
+                                                            n .text ; code sect
+                                                            ion 
+   32 00000000         
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   33 00000000         ; UAL assembler syntax 
+   34 00000000         ;  .syntax unified
+   35 00000000         
+   36 00000000                 THUMB
+   37 00000000         
+   38 00000000         
+   39 00000000         
+   40 00000000         
+   41 00000000         
+   42 00000000         ;ALIGN
+   43 00000000         delayms FUNCTION                     ; start of function
+                                                             
+   44 00000000                 EXPORT           delayms     ; .global delayms
+   45 00000000 B420            PUSH             {R5}        ; store used regist
+                                                            ers
+   46 00000002         
+   47 00000002 F641 250A 
+                       _D1     MOV              R5, #6666   ; -> 1ms
+   48 00000006         
+   49 00000006 BF00    _D2     NOP                          ; No Operation
+   50 00000008 BF00            NOP
+   51 0000000A BF00            NOP
+   52 0000000C 1E6D            SUBS             R5,R5,#1    ; R5--
+   53 0000000E D1FA            BNE              _D2         ; R5 != 0?, go on
+   54 00000010 BF00            NOP
+   55 00000012 BF00            NOP
+   56 00000014         
+   57 00000014 1E40            SUBS             R0,R0,#1    ; R0--
+   58 00000016 D1F4            BNE              _D1         ; R0 != 0?, go on
+   59 00000018 BF00            NOP
+   60 0000001A BF00            NOP
+   61 0000001C         
+   62 0000001C         
+   63 0000001C BC20            POP              {R5}
+   64 0000001E         
+   65 0000001E 4770            BX               LR
+   66 00000020         
+   67 00000020                 ENDFUNC                      ; end of function
+   68 00000020                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\objects\delay.d -o.\objects\delay.o -I.\RTE\_Target_1 -IC:\Users
+\Fred\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include -IC:\Users\Fre
+d\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.6.0\Device\Include --predefine="__
+EVAL SETA 1" --predefine="__UVISION_VERSION SETA 534" --predefine="_RTE_ SETA 1
+" --predefine="LPC177x_8x SETA 1" --predefine="_RTE_ SETA 1" --list=.\listings\
+delay.lst delay.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+DELAY 00000000
+
+Symbol: DELAY
+   Definitions
+      At line 31 in file delay.s
+   Uses
+      None
+Comment: DELAY unused
+_D1 00000002
+
+Symbol: _D1
+   Definitions
+      At line 47 in file delay.s
+   Uses
+      At line 58 in file delay.s
+Comment: _D1 used once
+_D2 00000006
+
+Symbol: _D2
+   Definitions
+      At line 49 in file delay.s
+   Uses
+      At line 53 in file delay.s
+Comment: _D2 used once
+delayms 00000000
+
+Symbol: delayms
+   Definitions
+      At line 43 in file delay.s
+   Uses
+      At line 44 in file delay.s
+Comment: delayms used once
+4 symbols
+338 symbols in table
