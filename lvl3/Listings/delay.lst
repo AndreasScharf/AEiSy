@@ -111,7 +111,7 @@ ARM Macro Assembler    Page 2
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=.\objects\delay.d -o.\objects\delay.o -IC:\Keil_v5\ARM\RV31\INC -I
 C:\Keil_v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x --predefine="_
-_EVAL SETA 1" --predefine="__UVISION_VERSION SETA 534" --list=.\listings\delay.
+_EVAL SETA 1" --predefine="__UVISION_VERSION SETA 524" --list=.\listings\delay.
 lst delay.s
 
 
