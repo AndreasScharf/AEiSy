@@ -1,1 +1,1 @@
-.\objects\delay.o: delay.s
+.\objects\delay.o: Utilities\delay.s

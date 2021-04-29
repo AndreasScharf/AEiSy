@@ -5,5 +5,5 @@
 .\objects\main.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h
 .\objects\main.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h
 .\objects\main.o: C:\Keil_v5\ARM\INC\NXP\LPC177x_8x\system_LPC177x_8x.h
-.\objects\main.o: delay.h
-.\objects\main.o: LED_P1_10_toggle.h
+.\objects\main.o: Utilities/delay.h
+.\objects\main.o: Utilities/LED_P1_10_toggle.h

@@ -1,4 +1,4 @@
-Dependencies for Project 'MC_robot', Target 'Target 1': (DO NOT MODIFY !)
+Dependencies for Project 'MC_robot', Target 'MC_Robot': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
 F (.\startup_LPC177x_8x.s)(0x60784A57)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork -IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x--pd "__UVISION_VERSION SETA 534"--list .\listings\startup_lpc177x_8x.lst --xref -o .\objects\startup_lpc177x_8x.o --depend .\objects\startup_lpc177x_8x.d)
 F (.\core_cm3.c)(0x60784A54)(--c99 -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x-D__UVISION_VERSION="534"-o .\objects\core_cm3.o --omf_browse .\objects\core_cm3.crf --depend .\objects\core_cm3.d)
@@ -11,12 +11,22 @@ I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x559D3FFA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x559D3FFA)
 I (C:\Keil_v5\ARM\INC\NXP\LPC177x_8x\system_LPC177x_8x.h)(0x5703B072)
 I (system_LPC177x_8x.h)(0x60784A57)
-F (.\main.c)(0x608AAC6C)(--c99 -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x-D__UVISION_VERSION="534"-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\main.c)(0x608ACAFA)(--c99 -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x-D__UVISION_VERSION="534"-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8E9122)
 I (C:\Keil_v5\ARM\INC\NXP\LPC177x_8x\LPC177x_8x.h)(0x57866824)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm3.h)(0x559D3FFA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x559D3FFA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x559D3FFA)
 I (C:\Keil_v5\ARM\INC\NXP\LPC177x_8x\system_LPC177x_8x.h)(0x5703B072)
-I (drivers/delay.h)(0x60784A54)
-I (drivers/LED_P1_10_toggle.h)(0x607851C5)
+I (Utilities/delay.h)(0x60784A54)
+I (Utilities/LED_P1_10_toggle.h)(0x607851C5)
+F (.\Utilities\delay.h)(0x60784A54)()
+F (.\Utilities\delay.s)(0x60784A55)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork -IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x--pd "__UVISION_VERSION SETA 534"--list .\listings\delay.lst --xref -o .\objects\delay.o --depend .\objects\delay.d)
+F (.\Utilities\LED_P1_10_toggle.c)(0x60785738)(--c99 -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x-D__UVISION_VERSION="534"-o .\objects\led_p1_10_toggle.o --omf_browse .\objects\led_p1_10_toggle.crf --depend .\objects\led_p1_10_toggle.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8E9122)
+I (C:\Keil_v5\ARM\INC\NXP\LPC177x_8x\LPC177x_8x.h)(0x57866824)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cm3.h)(0x559D3FFA)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x559D3FFA)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x559D3FFA)
+I (C:\Keil_v5\ARM\INC\NXP\LPC177x_8x\system_LPC177x_8x.h)(0x5703B072)
+F (.\Utilities\LED_P1_10_toggle.h)(0x607851C5)()

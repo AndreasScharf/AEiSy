@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include <LPC177x_8x.h>
-#include "delay.h"
-#include "LED_P1_10_toggle.h"
+#include "Utilities/delay.h"
+#include "Utilities/LED_P1_10_toggle.h"
 
 void init_display(void);
 void init(void);
@@ -9,10 +9,11 @@ _Bool check_status(void);
 void send_command_0(uint8_t code);
 void send_command_1(uint8_t code, uint8_t Data);
 void send_command_2(uint8_t code, uint16_t Data);
+void write_text(char  string[], int line, int column);
 
 #define LEDDIROUT LPC_GPIO1->DIR |= (1<<10)
 
-#define data ((uint16_t *) 0x80000004)
+#define data ((uint16_t *) 0x80000000)
 #define command ((uint16_t *) 0x80000004)
 #define read_address ((uint16_t *) 0x80000004)
 
@@ -21,11 +22,12 @@ void send_command_2(uint8_t code, uint16_t Data);
 int main(void)
 {
 	init();
-	
+	write_text("Hallo",2,33);
 	while(1)
 	{	
 		toggle();
 		delayms(50);
+		
 		
 		
 	}
@@ -36,6 +38,7 @@ int main(void)
 void init(void){
 	LEDDIROUT;	
 	init_display();
+	
 	
 }
 
@@ -93,8 +96,20 @@ void init_display(void){
 	send_command_0(0x81);
 	//Set Display Mode for Text and Graphics to ON
 	send_command_0(0x9F);
-	
 }
+
+void write_text(char  string[], int line, int column)
+	{ 
+	uint16_t address = line*30 + column;
+	
+  // Set Address Pointer 
+	send_command_2(0x24, address);
+		
+		
+	while(*string)
+	{ send_command_1(0xc0,(*string++)-32);
+		}
+	}
 void send_command_0(uint8_t code){
 		while (!check_status()){}
 		*command = code;
