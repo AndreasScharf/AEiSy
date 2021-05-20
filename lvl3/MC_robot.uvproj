@@ -7,10 +7,10 @@
 
   <Targets>
     <Target>
-      <TargetName>MC_Robot</TargetName>
+      <TargetName>Target 1</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060528::V5.06 update 5 (build 528)::ARMCC</pCCUsed>
+      <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -110,7 +110,7 @@
           <SimDllName>SARMCM3.DLL</SimDllName>
           <SimDllArguments>-MPU</SimDllArguments>
           <SimDlgDll>DARMP1.DLL</SimDlgDll>
-          <SimDlgDllArguments>-pLPC1778 -dAEiSyRobotSimulation</SimDlgDllArguments>
+          <SimDlgDllArguments>-pLPC1778</SimDlgDllArguments>
           <TargetDllName>SARMCM3.DLL</TargetDllName>
           <TargetDllArguments>-MPU</TargetDllArguments>
           <TargetDlgDll>TARMP1.DLL</TargetDlgDll>
@@ -125,7 +125,7 @@
             <Oh166RecLen>16</Oh166RecLen>
           </OPTHX>
           <Simulator>
-            <UseSimulator>1</UseSimulator>
+            <UseSimulator>0</UseSimulator>
             <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
             <RunToMain>1</RunToMain>
             <RestoreBreakpoints>1</RestoreBreakpoints>
@@ -137,7 +137,7 @@
             <RestoreSysVw>1</RestoreSysVw>
           </Simulator>
           <Target>
-            <UseTarget>0</UseTarget>
+            <UseTarget>1</UseTarget>
             <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
             <RunToMain>1</RunToMain>
             <RestoreBreakpoints>1</RestoreBreakpoints>
@@ -223,6 +223,7 @@
             <hadXRAM>0</hadXRAM>
             <uocXRam>0</uocXRam>
             <RvdsVP>0</RvdsVP>
+            <RvdsMve>0</RvdsMve>
             <hadIRAM2>1</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
@@ -363,6 +364,7 @@
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
             <uC99>1</uC99>
+            <uGnu>0</uGnu>
             <useXO>0</useXO>
             <v6Lang>1</v6Lang>
             <v6LangP>1</v6LangP>
@@ -434,50 +436,10 @@
               <FileType>1</FileType>
               <FilePath>.\system_LPC177x_8x.c</FilePath>
             </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Startup</GroupName>
-          <Files>
             <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Utilities</GroupName>
-          <Files>
-            <File>
-              <FileName>delay.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Utilities\delay.h</FilePath>
-            </File>
-            <File>
-              <FileName>delay.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\Utilities\delay.s</FilePath>
-            </File>
-            <File>
-              <FileName>LED_P1_10_toggle.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Utilities\LED_P1_10_toggle.c</FilePath>
-            </File>
-            <File>
-              <FileName>LED_P1_10_toggle.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Utilities\LED_P1_10_toggle.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Input</GroupName>
-          <Files>
-            <File>
-              <FileName>input.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\input\input.h</FilePath>
             </File>
             <File>
               <FileName>input.c</FileName>
@@ -485,20 +447,20 @@
               <FilePath>.\input\input.c</FilePath>
             </File>
             <File>
+              <FileName>input.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\input\input.h</FilePath>
+            </File>
+            <File>
               <FileName>sensor.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Input\sensor.c</FilePath>
+              <FilePath>.\input\sensor.c</FilePath>
             </File>
             <File>
               <FileName>sensor.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\input\sensor.h</FilePath>
             </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Output</GroupName>
-          <Files>
             <File>
               <FileName>lcd_display.c</FileName>
               <FileType>1</FileType>
@@ -518,6 +480,26 @@
               <FileName>output.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Output\output.h</FilePath>
+            </File>
+            <File>
+              <FileName>delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Utilities\delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>delay.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Utilities\delay.s</FilePath>
+            </File>
+            <File>
+              <FileName>LED_P1_10_toggle.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Utilities\LED_P1_10_toggle.c</FilePath>
+            </File>
+            <File>
+              <FileName>LED_P1_10_toggle.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Utilities\LED_P1_10_toggle.h</FilePath>
             </File>
           </Files>
         </Group>

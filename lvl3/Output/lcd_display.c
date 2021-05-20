@@ -1,9 +1,9 @@
 #include <LPC177x_8x.h>
 
 
-#define data ((uint16_t *) 0x80000000)
-#define command ((uint16_t *) 0x80000004)
-#define read_address ((uint16_t *) 0x80000004)
+#define data ((uint8_t *) 0x80004000)
+#define command ((uint8_t *) 0x80004004)
+#define read_address ((uint8_t *) 0x80004004)
 
 
 _Bool check_status(void){
@@ -37,6 +37,8 @@ void send_command_2(uint8_t code, uint16_t Data){
 		*command = code;
 }
 
+
+
 void write_text(char  string[], int line, int column)
 	{ 
 	uint16_t address = line*30 + column;
@@ -46,10 +48,20 @@ void write_text(char  string[], int line, int column)
 		
 		
 	while(*string)
-	{ send_command_1(0xc0,(*string++)-32);
+	{ 
+		char c = (*string++);
+		send_command_1(0xc0,c-32);
+	}
+}
+
+void clear_display(){
+	//Text Speicher clearen
+	for (int i = 0; i < 16; i++){
+		for (int j = 0; j < 30; j++){
+			write_text(" ", i, j);
 		}
 	}
-
+}
 
 void display_init(){
 	//EMC Init
@@ -100,11 +112,13 @@ void display_init(){
 	send_command_2(0x42, 0x200);
 	//Set Graphic Area to 30
 	send_command_2(0x43, 30);
+	
 	//Activate EXOR Mode
 	send_command_0(0x81);
 	//Set Display Mode for Text and Graphics to ON
-	send_command_0(0x9F);
+	send_command_0(0x94); //9F
 	
+	clear_display();
 }
 
 

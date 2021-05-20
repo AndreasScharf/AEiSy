@@ -1,6 +1,9 @@
-#include "sensor.h"
+#ifndef input
+   #define input
 
 
-void input_init(void){
-	sensor_init();
-}
+/*  - F u n c t i o n  P r o t o t y p e s                               */
+	void input_init(void);
+
+#endif
+

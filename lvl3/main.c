@@ -31,11 +31,12 @@ int main(void)
 		char s3[7];
 		
 		sprintf(s1, "%f", sl);
-		sprintf(s2, "%f", sm);
-		sprintf(s3, "%f", sr);
-		
 		write_text(s1, 2, 15);
+		
+		sprintf(s2, "%f", sm);
 		write_text(s2, 4, 15);
+		
+		sprintf(s3, "%f", sr);
 		write_text(s3, 6, 15);
 		
 		
@@ -50,11 +51,13 @@ void init(void){
 	//LED-Dir setzen und System Timer Control enablen
 	LPC_GPIO1->DIR |= (1<<10);
 
-	SysTick->CTRL |= SysTick_CTRL_ENABLE_Msk | SysTick_CTRL_TICKINT_Msk | SysTick_CTRL_CLKSOURCE_Msk;
-	SysTick->LOAD = 0x98967F; //250 ms Intervall
+	
 	
 	input_init();
 	output_init();
+	
+	SysTick->CTRL |= SysTick_CTRL_ENABLE_Msk | SysTick_CTRL_TICKINT_Msk | SysTick_CTRL_CLKSOURCE_Msk;
+	SysTick->LOAD = 0x98967F; //250 ms Intervall
 	
 	
 }

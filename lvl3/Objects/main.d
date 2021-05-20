@@ -9,6 +9,5 @@
 .\objects\main.o: Utilities/delay.h
 .\objects\main.o: Utilities/LED_P1_10_toggle.h
 .\objects\main.o: Input/input.h
-.\objects\main.o: Input/sensor.h
 .\objects\main.o: Output/output.h
 .\objects\main.o: Output/lcd_display.h
