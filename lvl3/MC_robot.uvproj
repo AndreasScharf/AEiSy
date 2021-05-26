@@ -501,6 +501,16 @@
               <FileType>5</FileType>
               <FilePath>.\Utilities\LED_P1_10_toggle.h</FilePath>
             </File>
+            <File>
+              <FileName>compass.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\compass.c</FilePath>
+            </File>
+            <File>
+              <FileName>compass.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\compass.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

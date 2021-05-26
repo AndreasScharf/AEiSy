@@ -452,15 +452,15 @@ ARM Macro Assembler    Page 7
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=.\objects\startup_lpc177x_8x.d -o.\objects\startup_lpc177x_8x.o -I
-C:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\INC\NXP
+e:\Keil_v5\ARM\RV31\INC -Ie:\Keil_v5\ARM\CMSIS\Include -Ie:\Keil_v5\ARM\INC\NXP
 
 
 
 ARM Macro Assembler    Page 8 
 
 
-\LPC177x_8x --predefine="__UVISION_VERSION SETA 529" --list=.\listings\startup_
-lpc177x_8x.lst startup_LPC177x_8x.s
+\LPC177x_8x --predefine="__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 529
+" --list=.\listings\startup_lpc177x_8x.lst startup_LPC177x_8x.s
 
 
 
@@ -1173,4 +1173,4 @@ Symbol: __use_two_region_memory
       None
 Comment: __use_two_region_memory unused
 3 symbols
-407 symbols in table
+408 symbols in table

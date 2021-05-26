@@ -25,7 +25,8 @@ int main(void)
 		float sl = get_distance(-1);
 		float sm = get_distance(0);
 		float sr = get_distance(1);
-		
+		//wenn float rumspinnt vielleicht auf integer wechseln, zwar weniger genau, aber Auflösung in cm sollte eigentlich auch reichen
+				
 		char s1[7];
 		char s2[7];
 		char s3[7];
