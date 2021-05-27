@@ -6,6 +6,8 @@
 #include "Input/input.h"
 #include "Output/output.h"
 #include "Output/lcd_display.h"
+#include "Input/sensor.h"
+#include "compass.h"
 
 void init(void);
 
@@ -19,7 +21,8 @@ int main(void)
 	write_text("Sensor links: ",2,0);
 	write_text("Sensor mitte: ",4,0);
 	write_text("Sensor rechts:",6,0);
-	
+	write_text("Himmelsrichtung:",10,0);
+	write_text("deg",10,25);
 	
 	while (1){
 		float sl = get_distance(-1);
@@ -30,16 +33,20 @@ int main(void)
 		char s1[7];
 		char s2[7];
 		char s3[7];
+		char s4[5];
 		
 		sprintf(s1, "%f", sl);
-		write_text(s1, 2, 15);
+		write_text(s1, 2, 20);
 		
 		sprintf(s2, "%f", sm);
-		write_text(s2, 4, 15);
+		write_text(s2, 4, 20);
 		
 		sprintf(s3, "%f", sr);
-		write_text(s3, 6, 15);
+		write_text(s3, 6, 20);
 		
+		float dirc = (float)get_direction()/10.0f;
+		sprintf(s4, "%f", dirc);
+		write_text(s4, 10, 20);
 		
 		delayms(100);
 	}

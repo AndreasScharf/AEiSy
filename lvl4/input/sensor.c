@@ -12,13 +12,11 @@ float distances[3];
 
 
 void sensor_init(void){
-		
-	
 		//Timer für Ultraschall-Interrupts initialisieren mit 1 us
 		LPC_SC->PCONP |= 2; //Timer 0 anschalten
 		
-		//Timer Prescale auf 3 > Frequenz von 10MHz / 1 Count = 100ns
-		LPC_TIM0->PR = 3;	
+		//Timer Prescale auf 2 > Frequenz von 10MHz / 1 Count = 100ns
+		LPC_TIM0->PR = 2;	
 		
 		sensoren[0] = links;
 		sensoren[1] = mitte;
@@ -26,7 +24,7 @@ void sensor_init(void){
 }
 
 float get_distance(int sensor){
-		int sensorpin = sensoren[sensor-1];
+		int sensorpin = sensoren[sensor+1];
 		
 		//Sensor als Output konfigurieren und anschalten
 		LPC_GPIO1->DIR |= (1 << sensorpin); 
@@ -44,7 +42,7 @@ float get_distance(int sensor){
 		//kurz warten um auf Input umzuschalten
 		LPC_TIM0->TC = 0;
 			
-		while (LPC_TIM0->TC < t10us){}	
+		while (LPC_TIM0->TC < t10us *10 ){}	//warte 100us auf wegen pull up auf sensr
 			
 		LPC_GPIO1->DIR &= ~(1 << sensorpin);
 		
@@ -60,6 +58,7 @@ float get_distance(int sensor){
 		}
 		
 		//Timer zurücksetzen
+		int last_tc = LPC_TIM0->TC;
 		LPC_TIM0->TC = 0;
 		
 		
@@ -69,13 +68,14 @@ float get_distance(int sensor){
 		while(1){
 				//Wert per Polling abfragen
 				input = LPC_GPIO1->PIN & (1 << sensorpin);
+			
 				if (input == 0){//fallende Flanke
 						measure = LPC_TIM0->TC;
 						break;
 				}			
 		}
 		
-		return measure / 580.0f;
+		return (float)measure / 580.0f;;
 		
 		
 }
