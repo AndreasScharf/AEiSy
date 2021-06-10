@@ -7,11 +7,10 @@
 #include "Output/output.h"
 #include "Output/lcd_display.h"
 #include "Input/sensor.h"
-#include "compass.h"
+#include "Input/compass.h"
+#include "Output/Motor.h"
 
 void init(void);
-
-
 
 
 int main(void)
@@ -48,7 +47,16 @@ int main(void)
 		sprintf(s4, "%f", dirc);
 		write_text(s4, 10, 20);
 		
-		delayms(100);
+		drive(0);
+		
+		delayms(4000);
+		
+		set_direction(RIGHT);
+		
+		delayms(4000);
+		
+		stop_motors();
+		
 	}
 	
 }

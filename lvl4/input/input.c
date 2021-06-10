@@ -1,6 +1,6 @@
 
 #include "sensor.h"
-#include "../compass.h"
+#include "compass.h"
 
 
 void input_init(void){
