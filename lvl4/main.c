@@ -47,7 +47,7 @@ int main(void)
 		sprintf(s4, "%f", dirc);
 		write_text(s4, 10, 20);
 		
-		drive(0);
+		drive(0);		
 		
 		delayms(4000);
 		
@@ -56,7 +56,9 @@ int main(void)
 		delayms(4000);
 		
 		stop_motors();
+		set_direction(STRAIGHT);
 		
+		delayms(4000);
 	}
 	
 }

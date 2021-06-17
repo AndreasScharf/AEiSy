@@ -44,8 +44,7 @@ void write_text(char  string[], int line, int column)
 	uint16_t address = line*30 + column;
 	
   // Set Address Pointer 
-	send_command_2(0x24, address);
-		
+	send_command_2(0x24, address);		
 		
 	while(*string)
 	{ 
@@ -61,6 +60,8 @@ void clear_display(){
 			write_text(" ", i, j);
 		}
 	}
+	//Graphical Speicher clearen
+	
 }
 
 void display_init(){

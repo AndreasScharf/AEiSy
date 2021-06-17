@@ -5,4 +5,5 @@
 void output_init(void){
 	display_init();
 	motor_init();
+	odometer_init();
 }
