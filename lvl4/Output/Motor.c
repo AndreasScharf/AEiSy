@@ -1,9 +1,7 @@
 #include <LPC177x_8x.h>
 #include <stdint.h>
 
-
-#define PI 3.14f
-#define RADUMFANG PI*6.6f
+float radumfang = 6.6f * 3.14f;
 
 //globale Counter für Odometer
 int countRight = 0;
@@ -22,11 +20,13 @@ void set_direction(driving_states direction);
 void EINT1_IRQHandler() // Interrupt Rad Rechts
 {
 	countRight += 1;
+	LPC_SC->EXTINT |= 1<<1;
 }
 
 void EINT2_IRQHandler() // Interrupt Rad Links
 {
 	countLeft += 1;
+	LPC_SC->EXTINT |= 1<<2;
 }
 
 int CounterRight()
@@ -57,13 +57,13 @@ void stop_motors(){
 	LPC_PWM1->MR2 = 9999;
 	LPC_PWM1->MR3 = 9999;	
 	LPC_PWM1->LER |= (1 << 2) | (1 << 3);//MR2 und MR3 updaten zur Laufzeit
-	LPC_GPIO1->CLR &= ~(0xF << 23);
+	LPC_GPIO1->CLR |= (0xF << 23);
 	
 }
 
 
 void drive(int reverse){
-		LPC_GPIO1->CLR &= ~(0xF << 23); 	
+		LPC_GPIO1->CLR |= (0xF << 23);	
 		LPC_GPIO1->SET |= (1 << (25 + reverse));//linker Motor
 		LPC_GPIO1->SET |= (1 << (23 + reverse));//rechter Motor
 }
@@ -71,21 +71,38 @@ void drive(int reverse){
 void drive_distance(int reverse, int distance){//Distanz in cm
 		set_direction(STRAIGHT);
 	
-		LPC_GPIO1->CLR &= ~(0xF << 23); 	
+		int currentCounterRight = countRight;
+		int currentCounterLeft = countLeft;		
+		
+		float rotations = ((float)distance)/radumfang;		
+	
+		LPC_GPIO1->CLR |= (0xF << 23);	
 		LPC_GPIO1->SET |= (1 << (25 + reverse));//linker Motor
 		LPC_GPIO1->SET |= (1 << (23 + reverse));//rechter Motor
 		
-		int currentCounterRight = countRight;
-		int currentCounterLeft = countLeft;	
-	
-		
-		float rotations = distance/RADUMFANG;		
-		
-		while (countRight - currentCounterRight < rotations*120.0f && countLeft - currentCounterLeft < rotations*120.0f){}
-		
-		stop_motors();
-	
+		while (countRight - currentCounterRight < rotations*240.0f && countLeft - currentCounterLeft < rotations*240.0f){}		
+		stop_motors();	
 }
+
+void drive_degree(int reverse, int degree){//Distanz in cm
+		set_direction(STRAIGHT);
+	
+		int currentCounterRight = countRight;
+		int currentCounterLeft = countLeft;		
+		
+		float rotations = ((float)degree)/radumfang;		
+	
+		LPC_GPIO1->CLR |= (0xF << 23);	
+		LPC_GPIO1->SET |= (1 << (25 + reverse));//linker Motor
+		LPC_GPIO1->SET |= (1 << (23 + reverse));//rechter Motor
+		
+		while (countRight - currentCounterRight < rotations*240.0f && countLeft - currentCounterLeft < rotations*240.0f){}		
+		stop_motors();	
+}
+
+
+
+
 
 
 
@@ -99,6 +116,12 @@ void odometer_init(){
 	
 	NVIC_EnableIRQ(EINT1_IRQn);
 	NVIC_EnableIRQ(EINT2_IRQn);
+	
+	
+	
+	
+	
+	
 }
 
 
@@ -122,3 +145,4 @@ void set_direction(driving_states direction){
 					break;				
 		}
 }
+

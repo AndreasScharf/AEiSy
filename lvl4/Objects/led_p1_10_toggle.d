@@ -5,3 +5,4 @@
 .\objects\led_p1_10_toggle.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h
 .\objects\led_p1_10_toggle.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h
 .\objects\led_p1_10_toggle.o: C:\Keil_v5\ARM\INC\NXP\LPC177x_8x\system_LPC177x_8x.h
+.\objects\led_p1_10_toggle.o: Utilities\../Output/motor.h

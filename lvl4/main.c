@@ -15,13 +15,31 @@ void init(void);
 
 int main(void)
 {
+
 	init();
-	write_text("Hallo",0,0);
+	
+	clear_display();
+	/*write_text("Hallo",0,0);
 	write_text("Sensor links: ",2,0);
 	write_text("Sensor mitte: ",4,0);
 	write_text("Sensor rechts:",6,0);
 	write_text("Himmelsrichtung:",10,0);
 	write_text("deg",10,25);
+	*/
+	draw_pixel(0,0);
+	draw_pixel(1,0);
+	
+	draw_circle(100,100,15);
+	fill_circle(200,37,35);
+	//draw_pixel(8,0);
+	
+	fill_circle(230,120,15);
+
+
+	while((LPC_GPIO2->PIN & (1<<7)) == (1<<7)){}
+		
+	//while((LPC_GPIO2->PIN & (1<<8)) == (1<<8)){}
+	
 	
 	while (1){
 		float sl = get_distance(-1);
@@ -47,18 +65,24 @@ int main(void)
 		sprintf(s4, "%f", dirc);
 		write_text(s4, 10, 20);
 		
-		drive(0);		
+		//drive(0);		
+		drive_distance(1,20);
+		
+		
+		delayms(4000);
+				
+				
+		drive_degree(0,720);
+		
 		
 		delayms(4000);
 		
-		set_direction(RIGHT);
+		//set_direction(RIGHT);		
 		
-		delayms(4000);
+		//stop_motors();
+		//set_direction(STRAIGHT);
 		
-		stop_motors();
-		set_direction(STRAIGHT);
-		
-		delayms(4000);
+		//delayms(4000);
 	}
 	
 }
@@ -68,7 +92,9 @@ int main(void)
 void init(void){
 	//LED-Dir setzen und System Timer Control enablen
 	LPC_GPIO1->DIR |= (1<<10);
-
+	
+	//Buttons für Steuerung initialisieren
+	LPC_GPIO2->DIR &= ~((1<<7) | (1<<8));
 	
 	
 	input_init();

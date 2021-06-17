@@ -1,17 +1,17 @@
 Dependencies for Project 'MC_robot', Target 'Target 1': (DO NOT MODIFY !)
 CompilerVersion: 5060750::V5.06 update 6 (build 750)::ARMCC
-F (.\startup_LPC177x_8x.s)(0x60AF9AD4)(--cpu Cortex-M3 -g --apcs=interwork -IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x--pd "__UVISION_VERSION SETA 529"--list .\listings\startup_lpc177x_8x.lst --xref -o .\objects\startup_lpc177x_8x.o --depend .\objects\startup_lpc177x_8x.d)
-F (.\core_cm3.c)(0x60AF9AD4)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x-D__UVISION_VERSION="529"-o .\objects\core_cm3.o --omf_browse .\objects\core_cm3.crf --depend .\objects\core_cm3.d)
+F (.\startup_LPC177x_8x.s)(0x60CB3CA6)(--cpu Cortex-M3 -g --apcs=interwork -IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x--pd "__UVISION_VERSION SETA 529"--list .\listings\startup_lpc177x_8x.lst --xref -o .\objects\startup_lpc177x_8x.o --depend .\objects\startup_lpc177x_8x.d)
+F (.\core_cm3.c)(0x60CB3CA6)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x-D__UVISION_VERSION="529"-o .\objects\core_cm3.o --omf_browse .\objects\core_cm3.crf --depend .\objects\core_cm3.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5D9B3488)
-F (.\system_LPC177x_8x.c)(0x60AF9AD4)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x-D__UVISION_VERSION="529"-o .\objects\system_lpc177x_8x.o --omf_browse .\objects\system_lpc177x_8x.crf --depend .\objects\system_lpc177x_8x.d)
+F (.\system_LPC177x_8x.c)(0x60CB3CA6)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x-D__UVISION_VERSION="529"-o .\objects\system_lpc177x_8x.o --omf_browse .\objects\system_lpc177x_8x.crf --depend .\objects\system_lpc177x_8x.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5D9B3488)
 I (C:\Keil_v5\ARM\INC\NXP\LPC177x_8x\LPC177x_8x.h)(0x5CC2BE6A)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm3.h)(0x559D3FFA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x559D3FFA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x559D3FFA)
 I (C:\Keil_v5\ARM\INC\NXP\LPC177x_8x\system_LPC177x_8x.h)(0x5703B072)
-I (system_LPC177x_8x.h)(0x60AF9AD4)
-F (.\main.c)(0x60AFB2C0)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x-D__UVISION_VERSION="529"-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+I (system_LPC177x_8x.h)(0x60CB3CA6)
+F (.\main.c)(0x60CB6B19)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x-D__UVISION_VERSION="529"-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5D9B3488)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5D9B348A)
 I (C:\Keil_v5\ARM\INC\NXP\LPC177x_8x\LPC177x_8x.h)(0x5CC2BE6A)
@@ -19,53 +19,65 @@ I (C:\Keil_v5\ARM\CMSIS\Include\core_cm3.h)(0x559D3FFA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x559D3FFA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x559D3FFA)
 I (C:\Keil_v5\ARM\INC\NXP\LPC177x_8x\system_LPC177x_8x.h)(0x5703B072)
-I (Utilities/delay.h)(0x60AF91A6)
-I (Utilities/LED_P1_10_toggle.h)(0x60AF91A6)
-I (Input/input.h)(0x60AF91A6)
-I (Output/output.h)(0x60AF91A6)
-I (Output/lcd_display.h)(0x60AF91A6)
-I (Input/sensor.h)(0x60AF9D09)
-I (compass.h)(0x60AFB0AD)
-F (.\input\input.c)(0x60AFB0A3)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x-D__UVISION_VERSION="529"-o .\objects\input.o --omf_browse .\objects\input.crf --depend .\objects\input.d)
-I (input\sensor.h)(0x60AF9D09)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5D9B3488)
-I (input\../compass.h)(0x60AFB0AD)
-F (.\input\input.h)(0x60AF91A6)()
-F (.\input\sensor.c)(0x60AFB02F)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x-D__UVISION_VERSION="529"-o .\objects\sensor.o --omf_browse .\objects\sensor.crf --depend .\objects\sensor.d)
-I (C:\Keil_v5\ARM\INC\NXP\LPC177x_8x\LPC177x_8x.h)(0x5CC2BE6A)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cm3.h)(0x559D3FFA)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5D9B3488)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x559D3FFA)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x559D3FFA)
-I (C:\Keil_v5\ARM\INC\NXP\LPC177x_8x\system_LPC177x_8x.h)(0x5703B072)
-F (.\input\sensor.h)(0x60AF9D09)()
-F (.\Output\lcd_display.c)(0x60AF91A6)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x-D__UVISION_VERSION="529"-o .\objects\lcd_display.o --omf_browse .\objects\lcd_display.crf --depend .\objects\lcd_display.d)
-I (C:\Keil_v5\ARM\INC\NXP\LPC177x_8x\LPC177x_8x.h)(0x5CC2BE6A)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cm3.h)(0x559D3FFA)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5D9B3488)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x559D3FFA)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x559D3FFA)
-I (C:\Keil_v5\ARM\INC\NXP\LPC177x_8x\system_LPC177x_8x.h)(0x5703B072)
-F (.\Output\lcd_display.h)(0x60AF91A6)()
-F (.\Output\output.c)(0x60AF91A6)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x-D__UVISION_VERSION="529"-o .\objects\output.o --omf_browse .\objects\output.crf --depend .\objects\output.d)
-I (Output\lcd_display.h)(0x60AF91A6)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5D9B3488)
-F (.\Output\output.h)(0x60AF91A6)()
-F (.\Utilities\delay.h)(0x60AF91A6)()
-F (.\Utilities\delay.s)(0x60AF91A6)(--cpu Cortex-M3 -g --apcs=interwork -IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x--pd "__UVISION_VERSION SETA 529"--list .\listings\delay.lst --xref -o .\objects\delay.o --depend .\objects\delay.d)
-F (.\Utilities\LED_P1_10_toggle.c)(0x60AF91A6)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x-D__UVISION_VERSION="529"-o .\objects\led_p1_10_toggle.o --omf_browse .\objects\led_p1_10_toggle.crf --depend .\objects\led_p1_10_toggle.d)
+I (Utilities/delay.h)(0x60CB3CA6)
+I (Utilities/LED_P1_10_toggle.h)(0x60CB5DF5)
+I (Input/input.h)(0x60CB3CA6)
+I (Output/output.h)(0x60CB3CA6)
+I (Output/lcd_display.h)(0x60CB6A15)
+I (Input/sensor.h)(0x60CB3CA6)
+I (Input/compass.h)(0x60CB3CA6)
+I (Output/Motor.h)(0x60CB6051)
+F (.\Utilities\LED_P1_10_toggle.c)(0x60CB606D)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x-D__UVISION_VERSION="529"-o .\objects\led_p1_10_toggle.o --omf_browse .\objects\led_p1_10_toggle.crf --depend .\objects\led_p1_10_toggle.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5D9B3488)
 I (C:\Keil_v5\ARM\INC\NXP\LPC177x_8x\LPC177x_8x.h)(0x5CC2BE6A)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm3.h)(0x559D3FFA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x559D3FFA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x559D3FFA)
 I (C:\Keil_v5\ARM\INC\NXP\LPC177x_8x\system_LPC177x_8x.h)(0x5703B072)
-F (.\Utilities\LED_P1_10_toggle.h)(0x60AF91A6)()
-F (.\compass.c)(0x60AFB1EA)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x-D__UVISION_VERSION="529"-o .\objects\compass.o --omf_browse .\objects\compass.crf --depend .\objects\compass.d)
+I (Utilities\../Output/motor.h)(0x60CB6051)
+F (.\Utilities\LED_P1_10_toggle.h)(0x60CB5DF5)()
+F (.\Output\Motor.h)(0x60CB6051)()
+F (.\Output\Motor.c)(0x60CB604B)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x-D__UVISION_VERSION="529"-o .\objects\motor.o --omf_browse .\objects\motor.crf --depend .\objects\motor.d)
 I (C:\Keil_v5\ARM\INC\NXP\LPC177x_8x\LPC177x_8x.h)(0x5CC2BE6A)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm3.h)(0x559D3FFA)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5D9B3488)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x559D3FFA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x559D3FFA)
 I (C:\Keil_v5\ARM\INC\NXP\LPC177x_8x\system_LPC177x_8x.h)(0x5703B072)
-F (.\compass.h)(0x60AFB0AD)()
+F (.\Output\lcd_display.h)(0x60CB6A15)()
+F (.\Output\lcd_display.c)(0x60CB6B07)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x-D__UVISION_VERSION="529"-o .\objects\lcd_display.o --omf_browse .\objects\lcd_display.crf --depend .\objects\lcd_display.d)
+I (C:\Keil_v5\ARM\INC\NXP\LPC177x_8x\LPC177x_8x.h)(0x5CC2BE6A)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cm3.h)(0x559D3FFA)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5D9B3488)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x559D3FFA)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x559D3FFA)
+I (C:\Keil_v5\ARM\INC\NXP\LPC177x_8x\system_LPC177x_8x.h)(0x5703B072)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5D9B3482)
+F (.\Output\output.h)(0x60CB3CA6)()
+F (.\Output\output.c)(0x60CB5FE4)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x-D__UVISION_VERSION="529"-o .\objects\output.o --omf_browse .\objects\output.crf --depend .\objects\output.d)
+I (Output\lcd_display.h)(0x60CB6A15)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5D9B3488)
+I (Output\Motor.h)(0x60CB6051)
+F (.\input\sensor.h)(0x60CB3CA6)()
+F (.\input\sensor.c)(0x60CB3CA6)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x-D__UVISION_VERSION="529"-o .\objects\sensor.o --omf_browse .\objects\sensor.crf --depend .\objects\sensor.d)
+I (C:\Keil_v5\ARM\INC\NXP\LPC177x_8x\LPC177x_8x.h)(0x5CC2BE6A)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cm3.h)(0x559D3FFA)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5D9B3488)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x559D3FFA)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x559D3FFA)
+I (C:\Keil_v5\ARM\INC\NXP\LPC177x_8x\system_LPC177x_8x.h)(0x5703B072)
+F (.\input\compass.h)(0x60CB3CA6)()
+F (.\input\compass.c)(0x60CB3CA6)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x-D__UVISION_VERSION="529"-o .\objects\compass.o --omf_browse .\objects\compass.crf --depend .\objects\compass.d)
+I (C:\Keil_v5\ARM\INC\NXP\LPC177x_8x\LPC177x_8x.h)(0x5CC2BE6A)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cm3.h)(0x559D3FFA)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5D9B3488)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x559D3FFA)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x559D3FFA)
+I (C:\Keil_v5\ARM\INC\NXP\LPC177x_8x\system_LPC177x_8x.h)(0x5703B072)
+F (.\input\input.h)(0x60CB3CA6)()
+F (.\input\input.c)(0x60CB3CA6)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x-D__UVISION_VERSION="529"-o .\objects\input.o --omf_browse .\objects\input.crf --depend .\objects\input.d)
+I (input\sensor.h)(0x60CB3CA6)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5D9B3488)
+I (input\compass.h)(0x60CB3CA6)
+F (.\Utilities\delay.s)(0x60CB3CA6)(--cpu Cortex-M3 -g --apcs=interwork -IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x--pd "__UVISION_VERSION SETA 529"--list .\listings\delay.lst --xref -o .\objects\delay.o --depend .\objects\delay.d)
+F (.\Utilities\delay.h)(0x60CB3CA6)()

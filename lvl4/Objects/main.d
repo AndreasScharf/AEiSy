@@ -12,4 +12,5 @@
 .\objects\main.o: Output/output.h
 .\objects\main.o: Output/lcd_display.h
 .\objects\main.o: Input/sensor.h
-.\objects\main.o: compass.h
+.\objects\main.o: Input/compass.h
+.\objects\main.o: Output/Motor.h
