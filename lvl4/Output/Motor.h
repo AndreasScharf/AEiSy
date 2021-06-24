@@ -18,6 +18,8 @@ typedef enum{
 	void drive_degree(int reverse, int degree);
 	void set_direction(driving_states direction);
 	void stop_motors(void);
+	void turn_centered(int clockwise);
+	void turn_off_centered(int clockwise);
 	int CounterLeft(void);
 	int CounterRight(void);
 #endif

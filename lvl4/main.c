@@ -251,11 +251,84 @@ void presentation(){
 				pfeil_index = 7;
 			break;
 			case LEVEL7:
+				if(slide == 1){
+					write_text("Drive forward", 1, 1);
+					delayms(500);					
+					drive(0);					
+				}				
+				else if(slide == 2){
+					write_text("Drive backward", 1, 1);
+					delayms(500);					
+					drive(1);					
+				}
+				else if(slide == 3){
+					write_text("Turn centered clockwise", 1, 1);
+					delayms(500);					
+					turn_centered(1);				
+				}
+				else if(slide == 4){
+					write_text("Turn centered counterclockwise", 1, 1);
+					delayms(500);					
+					turn_centered(0);				
+				}
+				else if(slide == 5){
+					write_text("Turn off-centered clockwise", 1, 1);
+					delayms(500);					
+					turn_off_centered(1);				
+				}
+				else if(slide == 6){
+					write_text("Turn off-entered counterclockwise", 1, 1);
+					delayms(500);					
+					turn_off_centered(0);				
+				}
 				
-				presentation_index = MENU;
-				pfeil_index = 9;
+				while((LPC_GPIO2->PIN & (1<<7)) == (1<<7) && (LPC_GPIO2->PIN & (1<<8)) == (1<<8)){}//warte auf einen der Taster
+					if ((LPC_GPIO2->PIN & (1<<7)) == (1<<7)){//enter wurde gedrückt
+						slide++;
+						if (slide > 6){//6 Slides bei Level 7
+							presentation_index = MENU;
+							pfeil_index = 9;
+						}
+				}
+				clear_display();	
+				stop_motors();
+				delayms(200);
 			break;
 			case LEVEL8:
+				
+				if(slide == 1){
+					write_text("Drive forward(Distance)", 1, 1);
+					delayms(500);					
+					drive_distance(0, 30);			
+				}
+				else if(slide == 2){
+					write_text("Drive backward(Distance)", 1, 1);
+					delayms(500);					
+					drive_distance(1, 30);			
+				}
+				else if(slide == 3){
+					write_text("Drive forward(Degree)", 1, 1);
+					delayms(500);					
+					drive_degree(0, 360);					
+				}
+				else if(slide == 4){
+					write_text("Drive backward(Degree)", 1, 1);
+					delayms(500);					
+					drive_degree(1, 360);				
+				}
+				
+				while((LPC_GPIO2->PIN & (1<<7)) == (1<<7) && (LPC_GPIO2->PIN & (1<<8)) == (1<<8)){}//warte auf einen der Taster
+					if ((LPC_GPIO2->PIN & (1<<7)) == (1<<7)){//enter wurde gedrückt
+						slide++;
+						if (slide > 4){//4 Slides bei Level 8
+							presentation_index = MENU;
+							pfeil_index = 9;
+						}
+				}
+				clear_display();	
+				stop_motors();
+				delayms(200);
+			
 				
 				presentation_index = MENU;
 				pfeil_index = 1;

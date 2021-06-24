@@ -92,6 +92,17 @@ void drive(int reverse){
 		
 }
 
+void turn_centered(int clockwise){
+	LPC_GPIO1->CLR |= (0xF << 23);	
+	LPC_GPIO1->SET |= (1 << (26 - clockwise));//linker Motor
+	LPC_GPIO1->SET |= (1 << (23 + clockwise));//rechter Motor
+}
+
+void turn_off_centered(int clockwise){
+	LPC_GPIO1->CLR |= (0xF << 23);	
+	LPC_GPIO1->SET |= (1 << (23 + 2*clockwise));	
+}
+
 void drive_distance(int reverse, int distance){//Distanz in cm
 		set_direction(STRAIGHT);
 	
