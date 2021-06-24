@@ -3,8 +3,8 @@
 #include "../Output/motor.h"
 
 float dummfang = 6.6f * 3.14f;
-static _Bool togglee = 0;
-static _Bool toggleee = 0;
+static _Bool togglee = 0;//Toggelt mit .5s
+static _Bool toggleee = 0;//Toggelt mit .25s
 
 static int old_counter_right = 0;
 static int old_counter_left = 0;
@@ -23,6 +23,11 @@ void toggle_LED(void){
 
 float getSpeed(){
 	return speed;
+}
+
+_Bool get_togglee(){
+	return togglee;
+
 }
 
 void SysTick_Handler(){

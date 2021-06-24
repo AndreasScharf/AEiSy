@@ -1,7 +1,7 @@
 #ifndef toggle_h
    #define toggle_h
 
-
+#include <stdio.h>
 #include <stdint.h>
 
 /*************************************************************************/
@@ -29,6 +29,7 @@
 
    void  toggle_LED  (void);
    float getSpeed(void);
+	 _Bool get_togglee(void);
 
 
 #endif  // _DELAY_H

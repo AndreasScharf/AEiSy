@@ -6,3 +6,5 @@
 .\objects\lcd_display.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h
 .\objects\lcd_display.o: C:\Keil_v5\ARM\INC\NXP\LPC177x_8x\system_LPC177x_8x.h
 .\objects\lcd_display.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\lcd_display.o: Output\animation.h
+.\objects\lcd_display.o: Output\../Utilities/delay.h

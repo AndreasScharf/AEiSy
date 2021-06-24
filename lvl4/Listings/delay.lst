@@ -111,7 +111,8 @@ ARM Macro Assembler    Page 2
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=.\objects\delay.d -o.\objects\delay.o -IC:\Keil_v5\ARM\RV31\INC -I
 C:\Keil_v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\INC\NXP\LPC177x_8x --predefine="_
-_UVISION_VERSION SETA 529" --list=.\listings\delay.lst Utilities\delay.s
+_EVAL SETA 1" --predefine="__UVISION_VERSION SETA 533" --list=.\listings\delay.
+lst Utilities\delay.s
 
 
 
@@ -151,4 +152,4 @@ Symbol: delayms
       At line 44 in file Utilities\delay.s
 Comment: delayms used once
 4 symbols
-335 symbols in table
+336 symbols in table

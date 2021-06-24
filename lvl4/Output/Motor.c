@@ -1,5 +1,7 @@
 #include <LPC177x_8x.h>
 #include <stdint.h>
+#include <math.h>
+#include "../input/compass.h"
 
 float radumfang = 6.6f * 3.14f;
 
@@ -39,6 +41,27 @@ int CounterLeft()
 	return countLeft;
 }
 
+float Regler(float IstWert, float SollWert, float Kp, float Ki)
+{
+  float u_ges, u_p;
+	static float u_i;
+  static float Abweichung=0;
+
+  Abweichung=SollWert-IstWert;
+
+  u_p  = Kp*Abweichung;
+
+  u_i += Ki*Abweichung;
+
+	u_ges = u_p + u_i;
+
+  if (u_ges > 9999) u_ges = 9999;
+  else if (u_ges < -9999) u_ges = -9999;
+
+  return u_ges;
+}
+
+
 void motor_init(void){
 		LPC_SC->PCONP |= (1 << 6); //PC PWM 1 anschalten
 		LPC_IOCON->P1_20 = (1 << 1); //PWM1[2]
@@ -66,6 +89,7 @@ void drive(int reverse){
 		LPC_GPIO1->CLR |= (0xF << 23);	
 		LPC_GPIO1->SET |= (1 << (25 + reverse));//linker Motor
 		LPC_GPIO1->SET |= (1 << (23 + reverse));//rechter Motor
+		
 }
 
 void drive_distance(int reverse, int distance){//Distanz in cm
@@ -96,14 +120,39 @@ void drive_degree(int reverse, int degree){//Distanz in cm
 		LPC_GPIO1->SET |= (1 << (25 + reverse));//linker Motor
 		LPC_GPIO1->SET |= (1 << (23 + reverse));//rechter Motor
 		
-		while (countRight - currentCounterRight < rotations*240.0f && countLeft - currentCounterLeft < rotations*240.0f){}		
+		float soll_direction = (float)get_direction()/10.0f;
+		
+		while (countRight - currentCounterRight < rotations*240.0f && countLeft - currentCounterLeft < rotations*240.0f){
+			//Check if Driving straight			
+			float ist_direction = (float)get_direction()/10.0f;
+			float difference = soll_direction - ist_direction;
+			if (difference > 300){
+				ist_direction += 360.0f;
+			}else if(difference < -300){
+				ist_direction -= 360.0f;
+			}
+			
+			float regelung = Regler(ist_direction, soll_direction, 10, 1);
+			if (regelung > 0){
+				LPC_PWM1->MR2 = 9999;
+				LPC_PWM1->MR3 = 9999 - abs((int)regelung);	
+				
+				LPC_PWM1->LER |= (1 << 2) | (1 << 3);//MR2 und MR3 updaten zur Laufzeit				
+				
+			}else if (regelung < 0){
+				LPC_PWM1->MR2 = 9999 - abs((int)regelung);	
+				LPC_PWM1->MR3 = 9999;	
+				LPC_PWM1->LER |= (1 << 2) | (1 << 3);//MR2 und MR3 updaten zur Laufzeit				
+				
+			}else{				
+				LPC_PWM1->MR2 = 9999;
+				LPC_PWM1->MR3 = 9999;	
+				LPC_PWM1->LER |= (1 << 2) | (1 << 3);//MR2 und MR3 updaten zur Laufzeit
+			
+			}
+		}		
 		stop_motors();	
 }
-
-
-
-
-
 
 
 void odometer_init(){
@@ -116,11 +165,6 @@ void odometer_init(){
 	
 	NVIC_EnableIRQ(EINT1_IRQn);
 	NVIC_EnableIRQ(EINT2_IRQn);
-	
-	
-	
-	
-	
 	
 }
 
