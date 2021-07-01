@@ -2,12 +2,15 @@
 #include <stdint.h>
 #include <math.h>
 #include "../input/compass.h"
+#include "lcd_display.h"
+#include <stdio.h>
 
 float radumfang = 6.6f * 3.14f;
-
+float u_i = 0;
 //globale Counter für Odometer
 int countRight = 0;
 int countLeft = 0;
+float myabs(float);
 
 typedef enum{
 	STRAIGHT = 0,
@@ -40,11 +43,14 @@ int CounterLeft()
 {	
 	return countLeft;
 }
-
+void reset_Regler(){
+ 
+  u_i = 0;
+}
 float Regler(float IstWert, float SollWert, float Kp, float Ki)
 {
   float u_ges, u_p;
-	static float u_i;
+  
   static float Abweichung=0;
 
   Abweichung=SollWert-IstWert;
@@ -114,44 +120,22 @@ void drive_distance(int reverse, int distance){//Distanz in cm
 		LPC_GPIO1->CLR |= (0xF << 23);	
 		LPC_GPIO1->SET |= (1 << (25 + reverse));//linker Motor
 		LPC_GPIO1->SET |= (1 << (23 + reverse));//rechter Motor
-		
-		while (countRight - currentCounterRight < rotations*240.0f && countLeft - currentCounterLeft < rotations*240.0f){}		
-		stop_motors();	
-}
-
-void drive_degree(int reverse, int degree){//Distanz in cm
-		set_direction(STRAIGHT);
 	
-		int currentCounterRight = countRight;
-		int currentCounterLeft = countLeft;		
+		float soll_wert = 0;
 		
-		float rotations = ((float)degree)/radumfang;		
-	
-		LPC_GPIO1->CLR |= (0xF << 23);	
-		LPC_GPIO1->SET |= (1 << (25 + reverse));//linker Motor
-		LPC_GPIO1->SET |= (1 << (23 + reverse));//rechter Motor
-		
-		float soll_direction = (float)get_direction()/10.0f;
-		
-		while (countRight - currentCounterRight < rotations*240.0f && countLeft - currentCounterLeft < rotations*240.0f){
-			//Check if Driving straight			
-			float ist_direction = (float)get_direction()/10.0f;
-			float difference = soll_direction - ist_direction;
-			if (difference > 300){
-				ist_direction += 360.0f;
-			}else if(difference < -300){
-				ist_direction -= 360.0f;
-			}
+		while (countRight - currentCounterRight < rotations*240.0f && countLeft - currentCounterLeft < rotations*240.0f){	
+			float difference = countRight - countLeft;
 			
-			float regelung = Regler(ist_direction, soll_direction, 10, 1);
+			
+			float regelung = Regler(difference, soll_wert, 4000, 0.000001);
 			if (regelung > 0){
 				LPC_PWM1->MR2 = 9999;
-				LPC_PWM1->MR3 = 9999 - abs((int)regelung);	
+				LPC_PWM1->MR3 = 9999 - (int)myabs(regelung);	
 				
 				LPC_PWM1->LER |= (1 << 2) | (1 << 3);//MR2 und MR3 updaten zur Laufzeit				
 				
 			}else if (regelung < 0){
-				LPC_PWM1->MR2 = 9999 - abs((int)regelung);	
+				LPC_PWM1->MR2 = 9999 - (int)myabs(regelung);	
 				LPC_PWM1->MR3 = 9999;	
 				LPC_PWM1->LER |= (1 << 2) | (1 << 3);//MR2 und MR3 updaten zur Laufzeit				
 				
@@ -161,10 +145,73 @@ void drive_degree(int reverse, int degree){//Distanz in cm
 				LPC_PWM1->LER |= (1 << 2) | (1 << 3);//MR2 und MR3 updaten zur Laufzeit
 			
 			}
-		}		
+			
+			
+			char ist[10];
+			sprintf(ist, "ist:  %3.2f", difference);
+			write_text(ist, 7, 11);
+			
+			char regelung_s[10];
+			sprintf(regelung_s, "R:  %3.2f", regelung);
+			write_text(regelung_s, 9, 11);}		
 		stop_motors();	
 }
 
+void drive_degree(int reverse, int degree){//Distanz in cm
+		set_direction(STRAIGHT);
+	
+		int currentCounterRight = countRight;
+		int currentCounterLeft = countLeft;		
+		reset_Regler();
+		
+		float rotations = ((float)degree)/360.0f;		
+	
+		LPC_GPIO1->CLR |= (0xF << 23);	
+		LPC_GPIO1->SET |= (1 << (25 + reverse));//linker Motor
+		LPC_GPIO1->SET |= (1 << (23 + reverse));//rechter Motor
+		
+		float soll_wert = 0;
+		
+		while (countRight - currentCounterRight < rotations*240.0f && countLeft - currentCounterLeft < rotations*240.0f){
+			//Check if Driving straight			
+			
+			float difference = countRight - countLeft;
+			
+			
+			float regelung = Regler(difference, soll_wert, 4000, 0.000001);
+			if (regelung > 0){
+				LPC_PWM1->MR2 = 9999;
+				LPC_PWM1->MR3 = 9999 - (int)myabs(regelung);	
+				
+				LPC_PWM1->LER |= (1 << 2) | (1 << 3);//MR2 und MR3 updaten zur Laufzeit				
+				
+			}else if (regelung < 0){
+				LPC_PWM1->MR2 = 9999 - (int)myabs(regelung);	
+				LPC_PWM1->MR3 = 9999;	
+				LPC_PWM1->LER |= (1 << 2) | (1 << 3);//MR2 und MR3 updaten zur Laufzeit				
+				
+			}else{				
+				LPC_PWM1->MR2 = 9999;
+				LPC_PWM1->MR3 = 9999;	
+				LPC_PWM1->LER |= (1 << 2) | (1 << 3);//MR2 und MR3 updaten zur Laufzeit
+			
+			}
+			
+			
+			char ist[10];
+			sprintf(ist, "ist:  %3.2f", difference);
+			write_text(ist, 7, 11);
+			
+			char regelung_s[10];
+			sprintf(regelung_s, "R:  %3.2f", regelung);
+			write_text(regelung_s, 9, 11);
+			
+		}		
+		stop_motors();	
+}
+float myabs (float value){
+	return (value < 0)? value * -1.0f: value;
+}
 
 void odometer_init(){
 	

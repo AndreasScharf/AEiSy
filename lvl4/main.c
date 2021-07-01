@@ -9,6 +9,7 @@
 #include "Input/sensor.h"
 #include "Input/compass.h"
 #include "Output/Motor.h"
+#include <math.h>
 
 void init(void);
 void presentation(void);
@@ -17,7 +18,7 @@ typedef enum{
 	MENU = 0,
 	LEVEL4 = 1,
 	LEVEL5 = 3,
-	LEVEL6 = 4,
+	LEVEL6 = 5,
 	LEVEL7 = 7,
 	LEVEL8 = 9
 } presentation_slide;
@@ -30,6 +31,7 @@ int main(void)
 	init();
 	
 	clear_display();
+	
 	
 	presentation();
 	/*write_text("Hallo",0,0);
@@ -144,11 +146,13 @@ void presentation(){
 				
 			
 				while((LPC_GPIO2->PIN & (1<<7)) == (1<<7)){//Enter noch nicht gedrückt
-					if ((LPC_GPIO2->PIN & (1<<8)) == (1<<8)){
+					if ((LPC_GPIO2->PIN & (1<<8)) != (1<<8)){
 						write_text(" ", pfeil_index, 1);
 						pfeil_index ++;
 						pfeil_index %= 10;
+						
 						pfeil_index ++;						
+						delayms(400);
 					}				
 					if (get_togglee()){
 						write_text(">", pfeil_index, 1);
@@ -160,6 +164,7 @@ void presentation(){
 				presentation_index = pfeil_index;
 				slide = 1;
 				clear_display();
+				delayms(400);
 			break;
 			case LEVEL4:				
 				if(slide == 1){
@@ -172,6 +177,7 @@ void presentation(){
 					write_text("Ausgabe eines Bitmaps:", 1, 1);
 					delayms(500);	
 					draw_hs_logo();
+					
 					
 				}else if(slide == 3){
 					write_text("Animation:", 1, 1);
@@ -194,12 +200,12 @@ void presentation(){
 				else if(slide == 6){
 					write_text("Kreise und Ellipsen zeichen:", 1, 1);
 					delayms(500);
-					draw_circle(20, 70, 30); delayms(100); draw_ellipse(150, 80, 200, 60, 30);
+					draw_circle(20, 70, 30); delayms(100); draw_ellipse(120, 80, 200, 60, 100);
 					delayms(1000);
-					fill_circle(20, 70, 30); delayms(100); fill_ellipse(150, 80, 200, 60, 30);
+					fill_circle(20, 70, 30); delayms(100); fill_ellipse(120, 80, 200, 60, 100);
 				}	
 				while((LPC_GPIO2->PIN & (1<<7)) == (1<<7) && (LPC_GPIO2->PIN & (1<<8)) == (1<<8)){}//warte auf einen der Taster
-					if ((LPC_GPIO2->PIN & (1<<7)) == (1<<7)){//enter wurde gedrückt
+					if ((LPC_GPIO2->PIN & (1<<7)) != (1<<7)){//enter wurde gedrückt
 						slide++;
 						if (slide > 6){//6 Slides bei Level 4
 							presentation_index = MENU;
@@ -211,6 +217,7 @@ void presentation(){
 			break;
 				
 			case LEVEL5:
+					clear_display();	
 					write_text("Darstellung der Distanzen:", 1, 1);
 				
 					while(1){
@@ -221,34 +228,75 @@ void presentation(){
 						char s1[5];
 						char s2[5];
 						char s3[5];
-				
-						sprintf(s1, "%f", sleft);
-						write_text(s1, 5, 3);
 						
-						sprintf(s2, "%f", smid);
-						write_text(s2, 5, 13);
+						sprintf(s1, "%3.2f", sleft);
+						write_text(s1, 5, 2);
 						
-						sprintf(s3, "%f", sright);
-						write_text(s3, 5, 22);
+						sprintf(s2, "%3.2f", smid);
+						write_text(s2, 5, 11);
+						
+						sprintf(s3, "%3.2f", sright);
+						write_text(s3, 5, 23);
 					
-						plot_distance(20, 50, ((int)(sleft/2.0f))); // linker Sensor
-						plot_distance(115, 50, ((int)(smid/2.0f))); // mittlerer Sensor
-						plot_distance(190, 50, ((int)(sright/2.0f))); // rechter Sensor
+						plot_distance(190, 50, ((int)(sleft/2.0f))); // linker Sensor
+						plot_distance(100, 50, ((int)(smid/2.0f))); // mittlerer Sensor
+						plot_distance(20, 50, ((int)(sright/2.0f))); // rechter Sensor
 						
-						if ((LPC_GPIO2->PIN & (1<<7)) == (1<<7)){//Enter-Taste gedrückt
+						
+						if ((LPC_GPIO2->PIN & (1<<7)) != (1<<7)){//Enter-Taste gedrückt
 							break;
 						}
 						
 					}
 			
 					presentation_index = MENU;
-					pfeil_index = 5;	
-			
+					pfeil_index = 5;
+					clear_display();	
+					delayms(200);						
 			break;
 			case LEVEL6:
 				
-				presentation_index = MENU;
-				pfeil_index = 7;
+			
+			
+					clear_display();	
+					write_text("Darstellung der Orientierung:", 1, 1);
+
+					while(1){
+						
+						
+						get_orientation();
+						float heading= (float)get_heading();
+						int pitch= (int)get_pitch();
+						int roll= (int)get_roll();
+						
+						
+
+						char head_string[6];
+						char pitch_string[5];
+						char roll_string[5];
+						
+						sprintf(head_string, "%1.1f",heading);
+						write_text(head_string, 5, 11);
+						
+						sprintf(pitch_string, "%d", pitch);
+						write_text(pitch_string, 7, 11);
+						
+						sprintf(roll_string, "%d", roll);
+						write_text(roll_string, 9, 11);
+					
+						
+						
+						if ((LPC_GPIO2->PIN & (1<<7)) != (1<<7)){//Enter-Taste gedrückt
+							break;
+						}
+						
+					}
+			
+					presentation_index = MENU;
+					pfeil_index = 7;
+					clear_display();	
+					delayms(200);						
+		
 			break;
 			case LEVEL7:
 				if(slide == 1){
@@ -283,7 +331,7 @@ void presentation(){
 				}
 				
 				while((LPC_GPIO2->PIN & (1<<7)) == (1<<7) && (LPC_GPIO2->PIN & (1<<8)) == (1<<8)){}//warte auf einen der Taster
-					if ((LPC_GPIO2->PIN & (1<<7)) == (1<<7)){//enter wurde gedrückt
+					if ((LPC_GPIO2->PIN & (1<<7)) != (1<<7)){//enter wurde gedrückt
 						slide++;
 						if (slide > 6){//6 Slides bei Level 7
 							presentation_index = MENU;
@@ -297,30 +345,30 @@ void presentation(){
 			case LEVEL8:
 				
 				if(slide == 1){
-					write_text("Drive forward(Distance)", 1, 1);
+					write_text("Drive forward(Distance) 30cm", 1, 1);
 					delayms(500);					
 					drive_distance(0, 30);			
 				}
 				else if(slide == 2){
-					write_text("Drive backward(Distance)", 1, 1);
+					write_text("Drive backward(Distance) 30cm", 1, 1);
 					delayms(500);					
 					drive_distance(1, 30);			
 				}
 				else if(slide == 3){
-					write_text("Drive forward(Degree)", 1, 1);
+					write_text("Drive forward(Degree) 360deg", 1, 1);
 					delayms(500);					
-					drive_degree(0, 360);					
+					drive_degree(0, 360 * 200);					
 				}
 				else if(slide == 4){
-					write_text("Drive backward(Degree)", 1, 1);
+					write_text("Drive backward(Degree) 360deg", 1, 1);
 					delayms(500);					
 					drive_degree(1, 360);				
 				}
 				
 				while((LPC_GPIO2->PIN & (1<<7)) == (1<<7) && (LPC_GPIO2->PIN & (1<<8)) == (1<<8)){}//warte auf einen der Taster
-					if ((LPC_GPIO2->PIN & (1<<7)) == (1<<7)){//enter wurde gedrückt
+					if ((LPC_GPIO2->PIN & (1<<7)) != (1<<7)){//enter wurde gedrückt
 						slide++;
-						if (slide > 4){//4 Slides bei Level 8
+						if (slide > 4){//4 Slides bei Level 8 abbruch function
 							presentation_index = MENU;
 							pfeil_index = 9;
 						}
@@ -330,8 +378,7 @@ void presentation(){
 				delayms(200);
 			
 				
-				presentation_index = MENU;
-				pfeil_index = 1;
+				
 			break;
 	
 	

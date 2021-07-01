@@ -3,6 +3,9 @@
 
 #define TxD 0
 #define RxD 1	
+int heading = 0;
+int8_t pitch =0;
+int8_t roll =0;
 
 
 
@@ -23,17 +26,34 @@ void compass_init(void){
 	LPC_UART1->LCR &= ~(1 << 7); //restrict access to baudrate settings
 
 }
-int get_direction(void) {
-	int meas = 0;
-	LPC_UART1->THR = 0x13;
+int get_heading(void)
+{return heading;}
 
+int8_t get_pitch(void)
+{return pitch;}
+
+int8_t get_roll(void)
+{return roll;}
+
+int get_orientation(void) {
+	LPC_UART1->THR = 0x23;
+	
 	//wait for first byte big endian from compess
 	while (!(LPC_UART1->LSR & 1)){}
-	meas = LPC_UART1->RBR << 8;
+	heading = LPC_UART1->RBR << 8;
 	
 	//wait for second byte big endian from compess
 	while (!(LPC_UART1->LSR & 1)){}	
-	meas |= LPC_UART1->RBR;
+	heading |= LPC_UART1->RBR;
 		
-	return meas;
+	//wait for pitch
+	while (!(LPC_UART1->LSR & 1)){}
+	pitch = LPC_UART1->RBR;
+	
+		
+	//wait for roll	
+	while (!(LPC_UART1->LSR & 1)){}
+	roll = LPC_UART1->RBR;
+	
+	return 0;
 }

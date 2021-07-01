@@ -207,21 +207,26 @@ void draw_hs_logo(){
 }
 
 void init_animation(){
+	
 	for (int i = 0; i < 14; i++){
-		draw_bitmap(frames[i], 0x980 + i*0x680);
+		draw_bitmap(frames[i], 0x200 + (i+1) * 3840);
+		delayms(200);	
 	}
-	draw_bitmap(clear, 0x980 + 14*0x680);
+	draw_bitmap(clear, 0x200 + 15*3840);
+	
 };
 
 void play_animation(){
-	for (int i = 0; i < 15; i++){
-		//Set Graphic Home Address
-		send_command_2(0x42, 0x980 + i*0x680);
+    
+		for (int i = 0; i < 14; i++){
+		draw_bitmap(frames[i], 0x200);
+		delayms(200);	
+	}
+	draw_bitmap(clear, 0x200 + 15*3840);
+
 		
-		delayms(250);
 		
 	}
-}
 
 
 
@@ -245,7 +250,7 @@ void draw_rectangle(int x, int y, int width, int height){
 	for (int x_index = x; x_index < x + width; x_index++){
 		for (int y_index = y; y_index < y + height; y_index++){
 			if((x_index == x) || (y_index == y) || (x_index == x + width - 1) || (y_index == y + height - 1)){
-				draw_pixel(x,y);
+				draw_pixel(x_index,y_index);
 			}
 		}
 	}
@@ -255,7 +260,7 @@ void draw_rectangle(int x, int y, int width, int height){
 void fill_rectangle(int x, int y, int width, int height){
 	for (int x_index = x; x_index < x + width; x_index++){
 		for (int y_index = y; y_index < y + height; y_index++){
-			draw_pixel(x,y);
+			draw_pixel(x_index,y_index);
 		}
 	}
 }
@@ -263,14 +268,15 @@ void fill_rectangle(int x, int y, int width, int height){
 void clear_rectangle(int x, int y, int width, int height){
 	for (int x_index = x; x_index < x + width; x_index++){
 		for (int y_index = y; y_index < y + height; y_index++){
-			clear_pixel(x,y);
+			clear_pixel(x_index,y_index);
 		}
 	}
 }
 
 void plot_distance(int x, int y, int length){
+	
 		int width = 30;		
-		clear_rectangle(x,y,width,76);	
+		clear_rectangle(x,y,width,100);	
 		fill_rectangle(x,y,width,length);			
 }
 
@@ -346,6 +352,7 @@ void fill_ellipse(int x1, int y1, int x2, int y2, int radius){
 
 
 void clear_display(){
+	
 	//Text Speicher clearen
 	for (int i = 0; i < 16; i++){
 		for (int j = 0; j < 30; j++){
@@ -354,7 +361,7 @@ void clear_display(){
 	}
 	//Graphical Speicher clearen
 	draw_bitmap(clear, 0x200);
-
+	send_command_2(0x42, 0x200);
 	
 }
 
@@ -415,8 +422,9 @@ void display_init(){
 	//Set Display Mode for Text and Graphics to ON
 	send_command_0(0x9F); 
 	
-	init_animation();
+	clear_display();
 	
+		
 	clear_display();
 }
 

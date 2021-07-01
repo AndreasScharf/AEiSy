@@ -14,3 +14,4 @@
 .\objects\main.o: Input/sensor.h
 .\objects\main.o: Input/compass.h
 .\objects\main.o: Output/Motor.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
